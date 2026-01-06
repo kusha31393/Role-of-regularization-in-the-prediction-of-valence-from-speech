@@ -31,9 +31,11 @@ ENV/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# PyTorch
+# PyTorch (exclude checkpoints but keep example results)
 *.pth
 *.pt
+# Exception: Keep example results
+!results/experiments/valence_dropout_0.5/*.pth
 
 # Data files (large)
 *.wav
@@ -44,9 +46,12 @@ data/*.pkl
 data/*.csv
 data/*.h5
 
-# Results and experiments (comment out if you want to track results)
+# Results and experiments (exclude most but keep example)
 results/experiments/*/
 *.png
+# Exception: Keep example results
+!results/experiments/valence_dropout_0.5/
+!results/experiments/valence_dropout_0.5/*
 *.jpg
 *.jpeg
 
@@ -79,6 +84,5 @@ logs/
 # !results/examples/
 # !examples/*.pth
 
-# Keep important example results
-!results/experiments/valence_dropout_0.5/valence_dropout_0.5_curves.png
-!results/experiments/valence_dropout_0.5/final_results_dropout_0.5.pthmodels/model.onnx
+# Large model files
+models/model.onnx
