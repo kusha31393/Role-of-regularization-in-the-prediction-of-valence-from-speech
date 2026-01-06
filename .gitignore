@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+paper1_venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyTorch
+*.pth
+*.pt
+
+# Data files (large)
+*.wav
+*.mp3
+*.flac
+data/ESD/
+data/*.pkl
+data/*.csv
+data/*.h5
+
+# Results and experiments (comment out if you want to track results)
+results/experiments/*/
+*.png
+*.jpg
+*.jpeg
+
+# Cache and temporary files
+cache/
+.cache/
+temp/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Model checkpoints (uncomment to track)
+# !results/examples/
+# !examples/*.pth
+
+# Keep important example results
+!results/experiments/valence_dropout_0.5/valence_dropout_0.5_curves.png
+!results/experiments/valence_dropout_0.5/final_results_dropout_0.5.pth

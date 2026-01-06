@@ -1,0 +1,82 @@
+# Configuration for SER Regularization Experiments
+# Based on "Role of Regularization in the Prediction of Valence from Speech"
+
+# Dataset configuration
+dataset:
+  name: "msp_podcast"
+  data_dir: "./data"
+  feature_dim: 6373  # OpenSmile ComParE 2013 feature set
+  num_speakers: 
+    train: null  # Will be determined from data
+    val: 15
+    test: 50
+  partition: "speaker_independent"  # or "speaker_dependent"
+
+# Feature configuration
+features:
+  type: "opensmile_compare2013"
+  standardize: true
+  max_std_dev: 3  # Clip features beyond 3 std devs
+  
+# Model configuration
+model:
+  type: "mlp"
+  hidden_layers: 2
+  hidden_size: 256
+  activation: "relu"
+  batch_norm: true
+  dropout_rate: 0.5  # Will be varied in experiments
+  
+# Training configuration
+training:
+  batch_size: 32
+  epochs: 1000
+  learning_rate: 0.001
+  optimizer: "sgd"
+  momentum: 0.9
+  loss_function: "ccc"  # Concordance Correlation Coefficient
+  early_stopping:
+    patience: 100
+    monitor: "val_ccc"
+    mode: "max"
+
+# Experiment configuration
+experiments:
+  # Dropout rate experiments
+  dropout_rates: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  
+  # Architecture variations
+  architectures:
+    - layers: 2
+      nodes: [256, 512, 1024]
+    - layers: 4
+      nodes: [256]
+    - layers: 6
+      nodes: [256]
+  
+  # Emotional attributes
+  attributes: ["valence", "arousal", "dominance"]
+  
+  # Number of random runs for statistical significance
+  num_runs: 10
+  
+  # Speaker dependency experiment
+  speaker_experiments:
+    - type: "speaker_independent"
+    - type: "speaker_dependent"
+
+# Evaluation configuration
+evaluation:
+  metrics: ["ccc", "pearson", "mse"]
+  save_predictions: true
+  plot_results: true
+
+# Logging configuration
+logging:
+  log_dir: "./experiments"
+  use_wandb: false  # Set to true if using Weights & Biases
+  project_name: "ser_regularization"
+  
+# Reproducibility
+seed: 42
+deterministic: true

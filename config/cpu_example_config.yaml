@@ -1,0 +1,67 @@
+# CPU-Optimized Configuration for ESD + OpenSMILE Demo
+# Example configuration for running with the enhanced ESD dataset
+# 100 epochs, validation every 5 epochs, optimized for CPU training
+
+# Dataset configuration  
+dataset:
+  name: "esd_opensmile"
+  data_dir: "./data"
+  feature_dim: 6373  # OpenSMILE ComParE 2016 feature set
+  partition: "speaker_independent"
+
+# Feature configuration
+features:
+  type: "opensmile_compare2016"
+  standardize: true
+  max_std_dev: 3  # Clip features beyond 3 std devs
+  
+# Model configuration
+model:
+  type: "mlp"
+  hidden_layers: 2
+  hidden_size: 256  # Good balance for CPU
+  activation: "relu"
+  batch_norm: true
+  dropout_rate: 0.3  # Will be varied in experiments
+  
+# Training configuration - CPU optimized
+training:
+  batch_size: 16  # Smaller batch size for CPU efficiency
+  epochs: 100  # Extended training for demonstration
+  learning_rate: 0.001
+  optimizer: "sgd"
+  momentum: 0.9
+  loss_function: "ccc"  # Concordance Correlation Coefficient
+  validation_frequency: 5  # Validate every 5 epochs to save time
+  early_stopping:
+    patience: 20  # Reduced for 100 epoch runs
+    monitor: "val_ccc"
+    mode: "max"
+
+# Experiment configuration - simplified for demo
+experiments:
+  # Test just a few key dropout rates for demo
+  dropout_rates: [0.0, 0.3, 0.5, 0.7]
+  
+  # Single emotion for demo (valence is most challenging)
+  attributes: ["valence"]
+  
+  # Single run for demo speed
+  num_runs: 1
+
+# Evaluation configuration
+evaluation:
+  metrics: ["ccc", "pearson", "mse"]
+  save_predictions: true
+  plot_results: true
+  save_training_curves: true  # Save loss curves
+
+# Logging configuration
+logging:
+  log_dir: "./experiments"
+  save_plots: true
+  save_models: true
+  
+# Reproducibility
+seed: 42
+deterministic: true

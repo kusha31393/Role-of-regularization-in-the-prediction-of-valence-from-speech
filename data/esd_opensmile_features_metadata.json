@@ -1,0 +1,27 @@
+{
+  "extraction_date": "2026-01-05T12:36:48.288078",
+  "feature_set": "ComParE_2016",
+  "feature_level": "Functionals",
+  "feature_dim": 6373,
+  "total_samples": 250,
+  "speakers": [
+    "0011",
+    "0012",
+    "0013",
+    "0014",
+    "0015",
+    "0016",
+    "0017",
+    "0018",
+    "0019",
+    "0020"
+  ],
+  "emotions": [
+    "Angry",
+    "Happy",
+    "Neutral",
+    "Sad",
+    "Surprise"
+  ],
+  "files_per_emotion_per_speaker": {
+    
