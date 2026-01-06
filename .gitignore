@@ -86,3 +86,4 @@ logs/
 
 # Large model files
 models/model.onnx
+docs/
