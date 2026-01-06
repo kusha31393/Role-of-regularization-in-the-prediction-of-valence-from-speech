@@ -81,4 +81,4 @@ logs/
 
 # Keep important example results
 !results/experiments/valence_dropout_0.5/valence_dropout_0.5_curves.png
-!results/experiments/valence_dropout_0.5/final_results_dropout_0.5.pth
+!results/experiments/valence_dropout_0.5/final_results_dropout_0.5.pthmodels/model.onnx
